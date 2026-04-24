@@ -8,13 +8,15 @@ Drug development faces a high attrition rate, mainly due to safety concerns in c
 <img width="815" height="921" alt="image" src="https://github.com/user-attachments/assets/120f7d1f-f41a-49f5-973e-16a92ca50d4d" />
 
 ## PreMOTA
+```bash
+Source Link：https://github.com/ivy266/PreMOTA/tree/main
+```
 ## Environment Configuration
 ```bash
 conda create -n premota python=3.8
 conda activate premota
 pip install -r requirements.txt
 ```
-
 ## Classification model pre-training
 ### Pre-training code for the classification model is located in './src'. Usage details follow:
 ### 1. Prepare your classification data
@@ -26,8 +28,6 @@ Run `./src/train.py` to train the classification model. The trained models will 
 Alternatively, you can download the pre-trained model from [this link](https://drive.google.com/drive/folders/1ABTd3h1jPA_4PJShuA7SJiSteqb-vOHo?usp=sharing) and place it in the `./src/model_save/CPI_data_cls` directory.
 
 **NOTICE : The pre-trained classification model is available for affinity fine-tuning, you can also retrain a new model with custom data**
-
-
 ## Affinity fine-tuning model
 ### Affinity fine-tuning code is located in './regression_multitask'. Usage details follow:
 ### 1. Prepare your affinity data
@@ -42,34 +42,32 @@ Alternatively, to train the model from scratch, run `./regression_multitask/trai
 Run `./regression_multitask/predict_drugs.py` or `./regression_multitask/predict_multidata_adr.py` to predict the compound-off-target binding affinity.
 
 ## MotifAttNet
+```bash
+Source Link：https://github.com/ivy266/MotifAttnNet/tree/main
+```
 ### Environment Configuration
-
 ```bash
 conda create -n motifattnnet python=3.8
 conda activate motifattnnet
 pip install -r requirements.txt
 ```
-
 ### Training
-
 Run `run_cmax_dose_random.sh` and `run_cmax_dose_scaffold.sh`, save the metric results, and store the models in the ./result/Cmax/ directory for different seed values.
-
 Run `run_ppb_random.sh` and `run_ppb_scaffold.sh`, save the metric results, and store the models in the ./result/PPB/ directory for different seed values.
 
-
 ### Predict
-
 Run `predict_drugs_dose.py` to obtain the PPB, Cmax, and Cmax,free values of the compounds.
 
 ## HetSia-SafeNet
+```bash
+Source Link：https://github.com/ivy266/HetSia-SafeNet/tree/main
+```
 ## Environment Configuration
-
 ```bash
 conda create -n bioact python=3.9
 conda activate bioact
 pip install -r requirements.txt
 ```
-
 ## Model Training
 
 ### Model training consists of two parts: data preprocessing and model training.
