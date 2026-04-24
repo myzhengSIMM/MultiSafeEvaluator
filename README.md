@@ -9,7 +9,6 @@ Drug development faces a high attrition rate, mainly due to safety concerns in c
 
 ## PreMOTA
 ## Environment Configuration
-
 ```bash
 conda create -n premota python=3.8
 conda activate premota
@@ -17,9 +16,7 @@ pip install -r requirements.txt
 ```
 
 ## Classification model pre-training
-
 ### Pre-training code for the classification model is located in './src'. Usage details follow:
-
 ### 1. Prepare your classification data
 The data used for pre-training is located in the `./datasets/CPI_data_cls` directory. You can use the provided `CPI_data_cls` dataset or prepare your own dataset. The data can be downloaded from [this link](https://drive.google.com/drive/folders/1ABTd3h1jPA_4PJShuA7SJiSteqb-vOHo?usp=sharing) and should be placed in the `raw_data` folder under `./datasets/CPI_data_cls`.
 Run `./src/data/data_process.py` to generate the training and validation datasets for the classification model.
@@ -32,9 +29,7 @@ Alternatively, you can download the pre-trained model from [this link](https://d
 
 
 ## Affinity fine-tuning model
-
 ### Affinity fine-tuning code is located in './regression_multitask'. Usage details follow:
-
 ### 1. Prepare your affinity data
 Data used for fine-tuning is located in the `./dataset_reg_multitask/` directory. Different targets data are located in different subdirectories. You can use the provided data or prepare your own data.
 
@@ -66,3 +61,37 @@ Run `run_ppb_random.sh` and `run_ppb_scaffold.sh`, save the metric results, and 
 
 Run `predict_drugs_dose.py` to obtain the PPB, Cmax, and Cmax,free values of the compounds.
 
+## HetSia-SafeNet
+## Environment Configuration
+
+```bash
+conda create -n bioact python=3.9
+conda activate bioact
+pip install -r requirements.txt
+```
+
+## Model Training
+
+### Model training consists of two parts: data preprocessing and model training.
+
+### 1. Data Preprocessing
+The ADR prediction model (HetSia-SafeNet) is trained using 9202 drugs with 18 ADR labels. The raw ADR dataset is stored in `./data_process/ADR_tree_label`. You can download the ADR_tree_label folder from [this link](https://drive.google.com/drive/folders/1BrL1Gw12G4eamExrf2lmc_fnAXidmjo_?usp=drive_link).
+Run `./data_process/drug_ac50_cmax_get.ipynb` to combine off-target data predicted by PreMOTA and Cmax,free values predicted by the MotifAttnNet model. This will generate the required drug features to construct the training dataset.You can download ADR_multitask_dataset, ADR_multitask_dataset_random_split, and ADR_multitask_dataset_scaffold_split from [this link](https://drive.google.com/drive/folders/1jUWwrYmRuj47Ko7ldkTzn213Y5bgaB_Y?usp=drive_link) and place them in the `./Data` folder.
+
+### 2. Data Splitting
+Run `./Data/data_split.ipynb` to split the dataset either randomly or using a scaffold-based approach.
+
+### 3. Model Training
+Run `./train_adr_property_adremb.py` to train the model and save the trained model in the `./result_split` directory.
+
+property_feature_adr_emb_random: Model trained with randomly split data.
+property_feature_adr_emb_scaffold: Model trained with scaffold-based split data.
+
+
+## Model Prediction and Visualization
+
+### 1. Data Preparation for Prediction (Merging Off-Target and Cmax Data)
+Run `./data_process/data_pro_dose_study_test_indrugs.ipynb` to combine off-target data from PreMOTA and Cmax/free values from MotifAttnNet, creating a format that is compatible with the model for prediction.
+
+### 2. Model Prediction and Visualization
+Run `./dose_study_drugs_visual.ipynb` to perform predictions and visualize the results.
