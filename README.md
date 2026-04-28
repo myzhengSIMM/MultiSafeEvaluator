@@ -13,7 +13,7 @@ Drug development faces a high attrition rate, mainly due to safety concerns in c
 git clone https://github.com/myzhengSIMM/MultiSafeEvaluator.git
 conda create -n premota python=3.8
 conda activate premota
-cd premota
+cd PreMOTA
 pip install -r requirements.txt
 ```
 ## Classification model pre-training
@@ -45,7 +45,7 @@ Run `./regression_multitask/predict_drugs.py` or `./regression_multitask/predict
 ```bash
 conda create -n motifattnnet python=3.8
 conda activate motifattnnet
-cd motifattnnet
+cd MotifAttnNet
 pip install -r requirements.txt
 ```
 ### Training
