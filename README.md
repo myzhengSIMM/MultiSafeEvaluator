@@ -8,13 +8,12 @@ Drug development faces a high attrition rate, mainly due to safety concerns in c
 <img width="815" height="921" alt="image" src="https://github.com/user-attachments/assets/120f7d1f-f41a-49f5-973e-16a92ca50d4d" />
 
 ## PreMOTA
-```bash
-Source Link：https://github.com/ivy266/PreMOTA/tree/main
-```
 ## Environment Configuration
 ```bash
+git clone https://github.com/myzhengSIMM/MultiSafeEvaluator.git
 conda create -n premota python=3.8
 conda activate premota
+cd premota
 pip install -r requirements.txt
 ```
 ## Classification model pre-training
@@ -42,13 +41,11 @@ Alternatively, to train the model from scratch, run `./regression_multitask/trai
 Run `./regression_multitask/predict_drugs.py` or `./regression_multitask/predict_multidata_adr.py` to predict the compound-off-target binding affinity.
 
 ## MotifAttNet
-```bash
-Source Link：https://github.com/ivy266/MotifAttnNet/tree/main
-```
 ### Environment Configuration
 ```bash
 conda create -n motifattnnet python=3.8
 conda activate motifattnnet
+cd motifattnnet
 pip install -r requirements.txt
 ```
 ### Training
@@ -59,13 +56,11 @@ Run `run_ppb_random.sh` and `run_ppb_scaffold.sh`, save the metric results, and 
 Run `predict_drugs_dose.py` to obtain the PPB, Cmax, and Cmax,free values of the compounds.
 
 ## HetSia-SafeNet
-```bash
-Source Link：https://github.com/ivy266/HetSia-SafeNet/tree/main
-```
 ## Environment Configuration
 ```bash
 conda create -n bioact python=3.9
 conda activate bioact
+cd HetSia-SafeNet
 pip install -r requirements.txt
 ```
 ## Model Training
